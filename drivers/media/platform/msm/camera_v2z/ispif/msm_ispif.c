@@ -50,7 +50,7 @@
 #define ISPIF_SOF_DEBUG_COUNT                    0
 
 #undef CDBG
-#ifdef CONFIG_MSMB_CAMERA_DEBUG
+#ifdef CONFIG_ZUK_CAMERA_DEBUG
 #define CDBG(fmt, args...) pr_debug(fmt, ##args)
 #else
 #define CDBG(fmt, args...) do { } while (0)
