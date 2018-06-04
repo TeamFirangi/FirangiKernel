@@ -138,19 +138,19 @@
 		ranges;
 
 		external_image_mem: external_image__region@0 {
-			reg = <0x0 0x87a00000 0x0 0x0600000>;
+			reg = <0x0 0x87900000 0x0 0x0700000>;
 			compatible = "removed-dma-pool";
 			no-map;
 		};
 
 		modem_adsp_mem: modem_adsp_region@0 {
-			reg = <0x0 0x88000000 0x0 0x05500000>;
+			reg = <0x0 0x88000000 0x0 0x04f00000>;
 			compatible = "removed-dma-pool";
 			no-map;
 		};
 
 		peripheral_mem: pheripheral_region@0 {
-			reg = <0x0 0x8d500000 0x0 0x0700000>;
+			reg = <0x0 0x8cf00000 0x0 0x0700000>;
 			compatible = "removed-dma-pool";
 			no-map;
 		};
@@ -180,6 +180,17 @@
 		cont_splash_mem: splash_region@83000000 {
 			reg = <0x0 0x83000000 0x0 0xc00000>;
 		};
+
+		/* global autoconfigured region for contiguous allocations */
+		linux,cma {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0 0x00000000 0 0xffffffff>;
+			reusable;
+			alignment = <0 0x400000>;
+			size = <0 0xc00000>;
+			linux,cma-default;
+		};
+
 	};
 
 	soc: soc { };
@@ -1891,9 +1902,9 @@
 		qcom,ce-opp-freq = <100000000>;
 	};
 
-	qcom_seecom: qseecom@87a00000 {
+	qcom_seecom: qseecom@87900000 {
 		compatible = "qcom,qseecom";
-		reg = <0x87a00000 0x200000>;
+		reg = <0x87900000 0x300000>;
 		reg-names = "secapp-region";
 		qcom,disk-encrypt-pipe-pair = <2>;
 		qcom,hlos-ce-hw-instance = <0>;
